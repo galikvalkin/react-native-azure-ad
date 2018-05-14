@@ -65,8 +65,6 @@ export default class ReactNativeAD {
   getCredentials():ADCredentials | null {
     log.verbose('getCredentials', this.credentials)
 
-
-    console.log('this.credentials: ', this.credentials);
     return this.credentials
   }
 
@@ -109,8 +107,6 @@ export default class ReactNativeAD {
           console.warn(`counld not save credential for ${resource}=${data[resource]} for its key/value is null/undefeind.`)
       }
 
-
-      console.log('saveCredentials data: ', data);
       Object.assign(this.credentials,  data)
 
       AsyncStorage.multiSet(pairs, (err) => {
@@ -120,7 +116,6 @@ export default class ReactNativeAD {
         else
           resolve()
       })
-      console.log(this.credentials)
     })
   }
 
