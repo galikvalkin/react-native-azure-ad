@@ -64,6 +64,9 @@ export default class ReactNativeAD {
 
   getCredentials():ADCredentials | null {
     log.verbose('getCredentials', this.credentials)
+
+
+    console.log('this.credentials: ', this.credentials);
     return this.credentials
   }
 
@@ -106,6 +109,8 @@ export default class ReactNativeAD {
           console.warn(`counld not save credential for ${resource}=${data[resource]} for its key/value is null/undefeind.`)
       }
 
+
+      console.log('saveCredentials data: ', data);
       Object.assign(this.credentials,  data)
 
       AsyncStorage.multiSet(pairs, (err) => {
@@ -244,6 +249,7 @@ export default class ReactNativeAD {
    * @return {Promise<GrantTokenResp>}  .
    */
   grantAccessToken(grantType:string, params:any):Promise<GrantTokenResp> {
+    console.log('params: ', params);
     // If resource is null or undefined, use `common` by default
     // params.resource = params.resource || 'common'
     if(grantType === 'password')
@@ -275,7 +281,8 @@ export default class ReactNativeAD {
             response : JSON.parse(res.replace('access_token=',''))
           }
           // save to memory context
-          this.credentials[params.resource] = cred.response
+          // this.credentials[params.resource] = cred.response
+          this.credentials.tokenRes = cred.response
           // save to persistent context
           let cacheKey = _getResourceKey(this.config, params.resource)
           if(cred.response.access_token) {
