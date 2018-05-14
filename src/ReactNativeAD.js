@@ -256,9 +256,7 @@ export default class ReactNativeAD {
         }, 15000)
 
         let body = `grant_type=${grantType}${_serialize(params)}`
-        console.log('this.config.token_uri: ', this.config.token_uri);
-        console.log('defaultTokenUrl: ', defaultTokenUrl);
-        console.log('body: ', body);
+
         fetch(this.config.token_uri ? this.config.token_uri : defaultTokenUrl, {
           method : 'POST',
           mode : 'cors',
